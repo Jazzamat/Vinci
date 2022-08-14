@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {Grid, TextField, Button} from '@mui/material';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import {FilterPrompt} from './filter/filter-prompt';
 
 /**
  * @name SearchBarInput
@@ -11,20 +10,24 @@ import {FilterPrompt} from './filter/filter-prompt';
  */
 export const SearchBarInput = ({xs, defineSearchTerm, onSearch}) => {
     return (
-        <Grid item xs={xs} sx={{ px: 1 }}>
-            <TextField 
-              fullWidth 
-              required
-              label="where should I park my car..." 
-              variant="outlined" 
-              onChange={(event) => defineSearchTerm(event.target.value)}
-              onKeyPress={(event) => {
-                if (event.key === 'Enter'){
-                    onSearch();
-                }
-              }}
-              />   
-        </Grid>
+        <div>
+            blah
+        </div>
+    
+        // <Grid item xs={xs} sx={{ px: 1 }}>
+        //     <TextField 
+        //       fullWidth 
+        //       required
+        //       label="where should I park my car..." 
+        //       variant="outlined" 
+        //       onChange={(event) => defineSearchTerm(event.target.value)}
+        //       onKeyPress={(event) => {
+        //         if (event.key === 'Enter'){
+        //             onSearch();
+        //         }
+        //       }}
+        //       />   
+        // </Grid>
     );
 }
 
@@ -57,7 +60,6 @@ export const SearchBarFilter = ({context, handleSearch}) => {
                     onClick={() => {setFilterDisplay(true)}}
                 />
             </Grid>
-            <FilterPrompt context={context} display={filterDisplay} setDisplay={setFilterDisplay} handleSearch={handleSearch}/>
         </>
 
     );
