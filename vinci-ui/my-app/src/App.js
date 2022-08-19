@@ -1,21 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
-import { SearchBarInput } from './components/SearchBar';
-import {SearchBarButton} from './components/SearchBar';
 
+
+import React from 'react';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Welcome to Vinci. The devs are at it...
-        </p>
+    <div className='container'>
 
-        
-      </header>
-      <SearchBarInput/>
+      <nav className='navbar'>
+          <li><a href="#home">Home</a></li> 
+          <li><a href="#create">Create</a></li> 
+          <li><a href="#about">about</a></li> 
+      </nav>
+
+
+      <section id="home">
+          <header className="wrapper"> </header>
+          <div className="content">
+              <h1 className='title-text' >Vinci</h1>
+          </div>
+      </section>
+
+      <section id="create">
+        <h1 className='title-text'>Create</h1>
+      </section>
+
+      <section id="about">
+        <h1 className='title-text'>About</h1>
+      </section>
+
     </div>
   );
 }
