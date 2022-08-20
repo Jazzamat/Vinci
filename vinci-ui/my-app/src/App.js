@@ -27,7 +27,8 @@ function App() {
       </section>
 
       <section id="about">
-        <h1 className='title-text'>About</h1>
+        <h1 className='section h1'>About Vinci</h1>
+        <p className='section p'>The vision for vinci is similar to dall-e by Open-Ai, but instead of a text to image converter its a song to image generator. The plan is to have a deep neural network learn the pattern between song and cover art, learning from extensive list of songs and their corresponding art online, from sites like spotify, apple music and so on, generating stunning artwork to match the character and feel of the song </p>
       </section>
 
     </div>
