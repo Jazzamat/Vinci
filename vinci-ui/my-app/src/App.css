@@ -91,10 +91,12 @@ section#create {
 }
 
 .image-container {
-
-  opacity: 1;
+  position: absolute;
+  z-index: 10;
+  opacity: 0.6;
   background: black;
-  animation: albumRotate 10s ease infinite;
+  background: url('https://source.unsplash.com/bZZp1PmHI0E/1600x900') no-repeat center center/
+  cover;
 
   
 }
@@ -102,6 +104,9 @@ section#create {
 
 
 .rainbow-image-container {
+
+  position: absolute;
+  
   background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
   background-size: 1800% 1800%;
   -webkit-animation: rainbow 18s ease infinite;
