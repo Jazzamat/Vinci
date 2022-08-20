@@ -48,7 +48,7 @@ body {
 
 
 .navbar a:hover {
-  animation: colorRotate 6s linear 0s infinite;
+  animation: colorRotate 6s ease infinite;
 }
 
 
@@ -70,10 +70,13 @@ section h1 {
 
 
 section p {
-  margin: 10rem;
-  padding-left: 50rem;
+  
+  padding-right: 30rem;
+
+  padding-left: 30rem;
+  padding-top: 1rem;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.5 rem;
+  font-size: 18px;
 }
 
 
@@ -86,6 +89,130 @@ section#create {
   background: url('https://source.unsplash.com/K2tdx2mFDHc/1600x900') no-repeat center center/
   cover;
 }
+
+.image-container {
+
+  opacity: 1;
+  background: black;
+  animation: albumRotate 10s ease infinite;
+
+  
+}
+
+
+
+.rainbow-image-container {
+  background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+  background-size: 1800% 1800%;
+  -webkit-animation: rainbow 18s ease infinite;
+  -z-animation: rainbow 18s ease infinite;
+  -o-animation: rainbow 18s ease infinite;
+    animation: rainbow 18s ease infinite;
+    z-index: 0;
+    
+
+}
+
+
+
+
+@-webkit-keyframes fadeInFromNone {
+  0% {
+      display: none;
+      opacity: 0;
+  }
+
+  1% {
+      display: block;
+      opacity: 0;
+  }
+
+  100% {
+      display: block;
+      opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeInFromNone {
+  0% {
+      display: none;
+      opacity: 0;
+  }
+
+  1% {
+      display: block;
+      opacity: 0;
+  }
+
+  100% {
+      display: block;
+      opacity: 1;
+  }
+}
+
+@-o-keyframes fadeInFromNone {
+  0% {
+      display: none;
+      opacity: 0;
+  }
+
+  1% {
+      display: block;
+      opacity: 0;
+  }
+
+  100% {
+      display: block;
+      opacity: 1;
+  }
+}
+
+@keyframes fadeInFromNone {
+  0% {
+      display: none;
+      opacity: 0;
+  }
+
+  1% {
+      display: block;
+      opacity: 0;
+  }
+
+  100% {
+      display: block;
+      opacity: 1;
+  }
+}
+
+
+@keyframes albumRotate {
+  from {
+   
+     background: url('/home/omer/Documents/Vinci/vinci-ui/my-app/src/assets/Album Covers/20150807_213911_7549_752890.jpg') no-repeat center center/
+     cover;
+
+  }
+  
+  40% {
+    background: url('/home/omer/Documents/Vinci/vinci-ui/my-app/src/assets/Album Covers/20150807_213928_7549_752891.jpg') no-repeat center center/
+    cover;
+  }
+  60% {
+ 
+  }
+  100% {
+    background: url('/home/omer/Documents/Vinci/vinci-ui/my-app/src/assets/Album Covers/artworks-KWGxuS0opzs0yb7B-iV37Tg-t500x500.jpg') no-repeat center center/
+    cover;
+  }
+  
+}
+
+
+.display-image {
+  border: #000000;
+}
+
+
 
 
 .App {
@@ -104,6 +231,7 @@ section#create {
 }
 
 
+
 .wrapper { 
   
   height: 100%;
@@ -113,8 +241,7 @@ section#create {
   top: 0;
   bottom: 0;
   position: absolute;
-  background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
-  background-size: 1800% 1800%;
+
 
   opacity: 0.5; 
   object-fit: cover;
@@ -125,6 +252,9 @@ section#create {
   justify-content: center;
   font-size: calc(10px + 2vmin);
 
+
+  background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+  background-size: 1800% 1800%;
   -webkit-animation: rainbow 18s ease infinite;
   -z-animation: rainbow 18s ease infinite;
   -o-animation: rainbow 18s ease infinite;
@@ -222,4 +352,12 @@ section#create {
   to {
     transform: rotate(360deg);
   }
+}
+
+
+
+.grid {
+  margin: 1rem;
+  padding-left: 10rem;
+  align-items: 'center';
 }
