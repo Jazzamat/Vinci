@@ -129,76 +129,22 @@ section#create {
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
   box-sizing: border-box;         /* Opera/IE 8+ */
+  
 
-  background: url('https://www.metallica.com/dw/image/v2/BCPJ_PRD/on/demandware.static/-/Sites-Metallica-Library/default/dwed9e0db5/images/releases/20150807_213911_7549_752890.jpg?sw=372&sh=372&sm=cut&sfrm=jpeg&q=95') no-repeat center center/
-  cover;
-  animation: albumRotate 12s  ease infinite
+  /* animation: albumRotate 12s  ease infinite; */
+
+}
+
+
+.image-container-2 {
+  position: relative;
 }
 
 .image-container-container  {
   position: flex;
-
   flex-direction: column; 
   align-items: center;
-}
 
-@keyframes albumChange {
-  from {
-    background: url('https://www.metallica.com/dw/image/v2/BCPJ_PRD/on/demandware.static/-/Sites-Metallica-Library/default/dwed9e0db5/images/releases/20150807_213911_7549_752890.jpg?sw=372&sh=372&sm=cut&sfrm=jpeg&q=95') no-repeat center center/
-    cover;
-  }
-  40% {
-    background: url('https://i1.sndcdn.com/artworks-KWGxuS0opzs0yb7B-iV37Tg-t500x500.jpg') no-repeat center center/
-    cover;
-  }
-  80% {
-    background: url('https://www.metallica.com/dw/image/v2/BCPJ_PRD/on/demandware.static/-/Sites-Metallica-Library/default/dwed9e0db5/images/releases/20150807_213911_7549_752890.jpg?sw=372&sh=372&sm=cut&sfrm=jpeg&q=95') no-repeat center center/
-    cover;
-  }
-  
-  100% {
-    background: url('https://i1.sndcdn.com/artworks-KWGxuS0opzs0yb7B-iV37Tg-t500x500.jpg') no-repeat center center/
-    cover;
-  }
-}
-
-@keyframes albumRotate {
-  from {
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  30% {
-    opacity: 1;
-  }
-  35% {
-    opacity: 0;
-  }
-  45% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  70% {
-    opacity: 1;
-    
-  }
-  75% {
-    opacity: 0;
-   
-  }
-  90% {
-    opacity: 0;
-   
-  }
-  95% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
 }
 
 
@@ -206,112 +152,155 @@ section#create {
 .rainbow-image-container {
 
   position: absolute;
-
-
-
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
   box-sizing: border-box;         /* Opera/IE 8+ */
-
-  
   background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
   background-size: 1800% 1800%;
   -webkit-animation: rainbow 18s ease infinite;
   -z-animation: rainbow 3s ease infinite;
   -o-animation: rainbow 3s ease infinite;
-    animation: rainbow 3s ease infinite;
-    z-index: 0;
-    
+  animation: rainbow 3s ease infinite;
+  -index: 0;
 
 }
-
-
-
-
-@-webkit-keyframes fadeInFromNone {
-  0% {
-      display: none;
-      opacity: 0;
-  }
-
-  1% {
-      display: block;
-      opacity: 0;
-  }
-
-  100% {
-      display: block;
-      opacity: 1;
-  }
-}
-
-@-moz-keyframes fadeInFromNone {
-  0% {
-      display: none;
-      opacity: 0;
-  }
-
-  1% {
-      display: block;
-      opacity: 0;
-  }
-
-  100% {
-      display: block;
-      opacity: 1;
-  }
-}
-
-@-o-keyframes fadeInFromNone {
-  0% {
-      display: none;
-      opacity: 0;
-  }
-
-  1% {
-      display: block;
-      opacity: 0;
-  }
-
-  100% {
-      display: block;
-      opacity: 1;
-  }
-}
-
-@keyframes fadeInFromNone {
-  0% {
-      display: none;
-      opacity: 0;
-  }
-
-  1% {
-      display: block;
-      opacity: 0;
-  }
-
-  100% {
-      display: block;
-      opacity: 1;
-  }
-}
-
-
-
-
-
-  
- 
-
-  
-
-
 
 .display-image {
   border: #000000;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  animation: albumRotate 12s ease infinite;
+}
+
+@keyframes albumRotate {
+
+  from {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  } 
+  20% {
+    opacity: 1;
+  } 
+  30% {
+    opacity: 1;
+  } 
+  40% {
+    opacity: 0;
+  } 
+  50% {
+    opacity: 0;
+  } 
+  60% {
+    opacity: 0;
+  } 
+  70% {
+    opacity: 0;
+  } 
+  80% {
+    opacity: 0;
+  } 
+  90% {
+    opacity: 0;
+  } 
+  100% {
+    opacity: 0;
+  }
 }
 
 
+.display-image-2 {
+  border: #000000;
+
+  position: absolute;
+  animation: albumRotate2 24s ease infinite;
+}
+
+
+
+@keyframes albumRotate2 {
+
+  from {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  } 
+  20% {
+    opacity: 0;
+  } 
+  30% {
+    opacity: 0;
+  } 
+  40% {
+    opacity: 0;
+  } 
+  50% {
+    opacity: 0;
+  } 
+  60% {
+    opacity: 1;
+  } 
+  70% {
+    opacity: 1;
+  } 
+  80% {
+    opacity: 1;
+  } 
+  90% {
+    opacity: 0;
+  } 
+  100% {
+    opacity: 1;
+  }
+}
+
+.display-image-3 {
+  border: #000000;
+
+  position: absolute;
+  animation: albumRotate3 12s ease infinite;
+}
+
+@keyframes albumRotate2 {
+
+  from {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  } 
+  20% {
+    opacity: 0;
+  } 
+  30% {
+    opacity: 0;
+  } 
+  40% {
+    opacity: 0;
+  } 
+  50% {
+    opacity: 0;
+  } 
+  60% {
+    opacity: 1;
+  } 
+  70% {
+    opacity: 1;
+  } 
+  80% {
+    opacity: 1;
+  } 
+  90% {
+    opacity: 0;
+  } 
+  100% {
+    opacity: 1;
+  }
+}
 
 
 .App {
