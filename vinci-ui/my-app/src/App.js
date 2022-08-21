@@ -39,7 +39,7 @@ function App() {
                 <div className='image-container'> 
                   <img className='display-image' src="https://i1.sndcdn.com/artworks-KWGxuS0opzs0yb7B-iV37Tg-t500x500.jpg" width="430" height="422"  style={{opacity:1}}/>
                   <img className='display-image-2' src="https://www.metallica.com/dw/image/v2/BCPJ_PRD/on/demandware.static/-/Sites-Metallica-Library/default/dwed9e0db5/images/releases/20150807_213911_7549_752890.jpg?sw=372&sh=372&sm=cut&sfrm=jpeg&q=95" width="430" height="422"  style={{opacity:1}}/>
-                  <img className='display-image-3' src="https://lh3.googleusercontent.com/dcxXIIlest09vnvKznWM9VWQXu1EL7lKxBzXGzwgmVjmMNBm1dEWT_0qn1xrEZYyKF_qRE1TLq8P_JY_mQ=w544-h544-l90-rj" width="430" height="422"  style={{opacity:1}}/>
+                  {/* <img className='display-image-3' src="https://lh3.googleusercontent.com/dcxXIIlest09vnvKznWM9VWQXu1EL7lKxBzXGzwgmVjmMNBm1dEWT_0qn1xrEZYyKF_qRE1TLq8P_JY_mQ=w544-h544-l90-rj" width="430" height="422"  style={{opacity:1}}/> */}
 
                 </div>
            

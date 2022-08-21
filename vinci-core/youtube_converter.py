@@ -1,8 +1,9 @@
 from youtube_dl import YoutubeDL
 
-audio_downloder = YoutubeDL({'format':'bestaudio'})
+class YoutubeConverter:
 
-url = "https://music.youtube.com/watch?v=khnokW3Mw24&list=RDAMVM3_g2un5M350"
-
-
-audio_downloder.extract_info(url)
+    @staticmethod
+    def convert(url):
+      
+        audio_downloder = YoutubeDL({'format':'bestaudio'})
+        audio_downloder.extract_info(url)
