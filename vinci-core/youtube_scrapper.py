@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from youtube_converter import YoutubeConverter
 
-os.chdir('./assets/Tracks_and_Covers')
+os.chdir('./local_assets/Tracks_and_Covers')
 
 url = 'https://music.youtube.com/watch?v=pTYIf2pkxzQ'
 browser = webdriver.Chrome()
