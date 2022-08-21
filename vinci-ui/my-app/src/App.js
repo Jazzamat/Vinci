@@ -28,31 +28,21 @@ function App() {
    
 
       <section id="about">
-        <h1 className='section h1'>About Vinci</h1>
-          <Grid 
-          container  
-          spacing={0}
-          direction="column"
-          alignItems="center"
-          justifyContent="center"
-        >
-            
-          <Grid item xs={12} sm={6} md={3}>
-            <div className='rainbow-image-container'> 
-              <img className='display-image' width="475" height="475"  style={{opacity:0}}/>
-            </div>
+       
+            <h1 className='section h1'>About Vinci</h1>
+        
+            <div className='image-container-container'>
+                <div className='rainbow-image-container'> 
+                  <img className='display-image' width="430" height="422"  style={{opacity:0}}/>
+                </div>
 
-            <div className='image-container'> 
-              <img className='display-image' width="475" height="475"  style={{opacity:0}}/>
+                <div className='image-container'> 
+                  <img className='display-image' width="430" height="430"  style={{opacity:0}}/>
+                </div>
             </div>
-            
-          </Grid>
+            <p className='section p'>The vision for vinci is similar to dall-e by Open-Ai, but instead of a text to image converter its a song to image generator. The plan is to have a deep neural network learn the pattern between song and cover art, learning from extensive list of songs and their corresponding art online, from sites like spotify, apple music and so on, generating stunning artwork to match the character and feel of the song </p>
 
        
-            {/* <img className='display-image' width="500" height="500"/> */}
-          </Grid>
-        <p className='section p'>The vision for vinci is similar to dall-e by Open-Ai, but instead of a text to image converter its a song to image generator. The plan is to have a deep neural network learn the pattern between song and cover art, learning from extensive list of songs and their corresponding art online, from sites like spotify, apple music and so on, generating stunning artwork to match the character and feel of the song </p>
-  
       </section>
 
       <section id="create">
