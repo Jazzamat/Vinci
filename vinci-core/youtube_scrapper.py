@@ -3,11 +3,12 @@ import requests
 import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from youtube_converter import YoutubeConverter
+from youtube_converter import YoutubeConverter, YtDlp
 
 os.chdir('./local_assets/Tracks_and_Covers')
 
-url = 'https://music.youtube.com/watch?v=pTYIf2pkxzQ'
+url = input("Enter a youtube music url:")
+#url = "https://music.youtube.com/watch?v=Q0TEUMPIhk8&list=RDAMVMQ0TEUMPIhk8"
 browser = webdriver.Chrome()
 browser.get(url)
 
@@ -30,6 +31,10 @@ while True:
         print("A file has already been created for the track. Skipping...")
         next.click()
         continue
+    except FileNotFoundError as e:
+        print("The program is complaining that there is no such directory, for some reason. Skipping...")
+        next.click()
+        continue
 
     img = browser.find_element(By.XPATH,'//*[@id="img"]')
     src = img.get_attribute('src')
@@ -37,7 +42,7 @@ while True:
 
     response = requests.get(src)
     open("cover.png", "wb").write(response.content)
-    YoutubeConverter.convert(url)
+    YtDlp.convert(url)
     os.chdir('../')
     
     next.click()
