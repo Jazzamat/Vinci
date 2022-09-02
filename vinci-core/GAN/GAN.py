@@ -13,7 +13,7 @@ RANDOM_SEED = 111
 # training parameters
 LR = 0.001 # learning rate, (step size in the gradient decent)
 NUM_EPOCHS = 300
-LOSS_FUNCTION = nn.BCELoss # loss = error. Binary Cross Entropy function
+LOSS_FUNCTION = nn.BCELoss() # loss = error. Binary Cross Entropy function
 OPTIMIZER = torch.optim.Adam
 
 
@@ -114,13 +114,40 @@ for epoch in range(NUM_EPOCHS):
             (real_samples_labels, generated_samples_labels)
         )
 
-        # training the discriminator
+        # Training the discriminator
+
         discriminator.zero_grad()
         output_discriminator = discriminator(all_samples)
         loss_discriminator = LOSS_FUNCTION(
-            output_discriminator, all_samples_labels
-        )
+            output_discriminator, all_samples_labels)
         loss_discriminator.backward()
         optimizer_discriminator.step()
 
+
+        # Data for training the generator
+        latent_space_samples = torch.randn((batch_size, 2))
+
+        # Training the generator
+
+        generator.zero_grad()
+        generated_samples = generator(latent_space_samples)
+        output_discriminator_generated = discriminator(generated_samples)
+        loss_generator = LOSS_FUNCTION(
+            output_discriminator_generated, real_samples_labels
+        )
+        loss_generator.backward()
+        optimizer_generator.step()
+
+
+        # Show loss
+        if epoch % 10 == 0 and n == batch_size - 1:
+            print(f"Epoch: {epoch} Loss D.: {loss_discriminator}")
+            print(f"Epoch: {epoch} Loss G.: {loss_generator}")
+
         
+
+
+
+generated_samples = generated_samples.detach()
+plt.plot(generated_samples[:, 0], generated_samples[:, 1], ".")
+plt.show()
