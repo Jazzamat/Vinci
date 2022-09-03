@@ -21,7 +21,7 @@ function App() {
           <header className="wrapper"> </header>
           <div className="content">
               <h1 className='title-text' >Vinci</h1>
-              <p >alpha v0.0</p>
+              <p >alpha v0.1</p>
           </div>
       </section>
 
