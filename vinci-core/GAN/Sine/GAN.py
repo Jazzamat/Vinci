@@ -143,6 +143,9 @@ for epoch in range(NUM_EPOCHS):
         if epoch % 10 == 0 and n == batch_size - 1:
             print(f"Epoch: {epoch} Loss D.: {loss_discriminator}")
             print(f"Epoch: {epoch} Loss G.: {loss_generator}")
+            generated_samples = generated_samples.detach()
+            plt.plot(generated_samples[:, 0], generated_samples[:, 1], ".")
+    
 
         
 
