@@ -16,10 +16,8 @@ class AudioPreprocessor():
     def wavToSpectrogram(file_path, n_fft=2048, hop_length=512):
 
         signal, sr = librosa.load(file_path, sr=22050)
-
         stft = librosa.core.stft(signal,hop_length=hop_length, n_fft=n_fft)
         spectrogram = np.abs(stft)
-
         log_spectrogram = librosa.amplitude_to_db(spectrogram)
 
         librosa.display.specshow(log_spectrogram, sr=sr, hop_length=hop_length)
@@ -43,9 +41,7 @@ class AudioPreprocessor():
         plt.colorbar()
         plt.show()
 
-
         return MFCCs
-
 
     @staticmethod
     def SpectrogramToWav():
