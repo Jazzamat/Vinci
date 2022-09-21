@@ -1,7 +1,8 @@
 # An auto encoder for audio sytheses
 # uses Keras, tensor flow
 
-
+import os
+import pickle
 from pickletools import optimize
 from warnings import filters
 from tensorflow.keras import Model
@@ -38,6 +39,8 @@ class Autoencoder():
         self._num_conv_layers = len(conv_filters)
         
         self._build()
+
+
         
 
     def summary(self):
@@ -57,7 +60,47 @@ class Autoencoder():
                         epochs=num_epochs,
                         shuffle=True)
 
+
+    def save(self, save_folder="."): 
+
+
+        if not os.path.exists(save_folder):
+            os.mkdir(save_folder)
+
+        parameters = [
+            self.input_shape,# [28, 28, 1] 28 pixels by 28 pixels, by 1 channel
+            self.conv_filters, # [2,4,8] 2 layers, 4 layers 8 layers
+            self.conv_kernels,# [3, 5, 5]
+            self.conv_strides , # [1,2,2]
+            self.latent_space_dim ,# an int ex: 2
+        ]
+
+        save_path_parameters = os.path.join(save_folder, "parameters.pkl")
+        with open(save_path_parameters, "wb") as f:
+            pickle.dump(parameters,f)
+
+        save_path_weights = os.path.join(save_folder, "weights.h5")
+        self.model.save_weights(save_path_weights)
         
+      
+    @classmethod
+    def load(cls,save_folder="."):
+
+        save_path_parameters = os.path.join(save_folder, "parameters.pkl")
+
+        with open(save_path_parameters, "rb") as f:
+            parameters = pickle.load(f)
+
+        save_path_weights = os.path.join(save_folder, "weights.h5")
+        autoencoder = Autoencoder(*parameters)
+        autoencoder.load_weights(save_path_weights)
+
+        return autoencoder 
+
+        
+    def load_weights(self, weights_path):
+        self.model.load_weights(weights_path)
+    
     # HIGH LEVEL FUNC TO BUIILD AUTOENCODER
     def _build(self):
         self._build_encoder()
