@@ -8,7 +8,6 @@ from torch import nn
 class Discriminator(nn.Module):
     
     def __init__(self):
-        
         super().__init__()
         self.model = nn.Sequential(
             nn.Linear(2,256), # input is 2D and the first hidden layer has 256 Ns (neurons)

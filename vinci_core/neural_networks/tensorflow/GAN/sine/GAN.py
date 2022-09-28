@@ -12,7 +12,11 @@ RANDOM_SEED = 111
 
 # training parameters
 LR = 0.001 # learning rate, (step size in the gradient decent)
+<<<<<<< HEAD:vinci-core/GAN/GAN.py
 NUM_EPOCHS = 700
+=======
+NUM_EPOCHS = 300
+>>>>>>> c15f07524c323bb4722c7100d66e560bed97e54c:vinci_core/neural_networks/tensorflow/GAN/sine/GAN.py
 LOSS_FUNCTION = nn.BCELoss() # loss = error. Binary Cross Entropy function
 OPTIMIZER = torch.optim.Adam
 
@@ -134,10 +138,12 @@ for epoch in range(NUM_EPOCHS):
             (real_samples_labels, generated_samples_labels)
         ).to('cuda', non_blocking=True)
 
-        # training the discriminator
+        # Training the discriminator
+
         discriminator.zero_grad()
         all_samples.to(cuda)
         output_discriminator = discriminator(all_samples)
+<<<<<<< HEAD:vinci-core/GAN/GAN.py
         loss_discriminator = LOSS_FUNCTION(output_discriminator, all_samples_labels)
         loss_discriminator.backward()
         optimizer_discriminator.step()
@@ -149,10 +155,26 @@ for epoch in range(NUM_EPOCHS):
         latent_space_samples.to('cuda', non_blocking=True)
         generated_samples = gen(latent_space_samples)
         generated_samples.to('cuda', non_blocking=True)
+=======
+        loss_discriminator = LOSS_FUNCTION(
+            output_discriminator, all_samples_labels)
+        loss_discriminator.backward()
+        optimizer_discriminator.step()
+
+
+        # Data for training the generator
+        latent_space_samples = torch.randn((batch_size, 2))
+
+        # Training the generator
+
+        generator.zero_grad()
+        generated_samples = generator(latent_space_samples)
+>>>>>>> c15f07524c323bb4722c7100d66e560bed97e54c:vinci_core/neural_networks/tensorflow/GAN/sine/GAN.py
         output_discriminator_generated = discriminator(generated_samples)
         loss_generator = LOSS_FUNCTION(
             output_discriminator_generated, real_samples_labels
         )
+<<<<<<< HEAD:vinci-core/GAN/GAN.py
 
         loss_generator.backward()
         optimizer_generator.step()
@@ -194,3 +216,24 @@ generated_samples = gen(latent_space_samples).cpu().detach()
 plt.plot(generated_samples[:,0], generated_samples[:,1], ".")
 plt.show()
 
+=======
+        loss_generator.backward()
+        optimizer_generator.step()
+
+
+        # Show loss
+        if epoch % 10 == 0 and n == batch_size - 1:
+            print(f"Epoch: {epoch} Loss D.: {loss_discriminator}")
+            print(f"Epoch: {epoch} Loss G.: {loss_generator}")
+            generated_samples = generated_samples.detach()
+            plt.plot(generated_samples[:, 0], generated_samples[:, 1], ".")
+    
+
+        
+
+
+
+generated_samples = generated_samples.detach()
+plt.plot(generated_samples[:, 0], generated_samples[:, 1], ".")
+plt.show()
+>>>>>>> c15f07524c323bb4722c7100d66e560bed97e54c:vinci_core/neural_networks/tensorflow/GAN/sine/GAN.py
