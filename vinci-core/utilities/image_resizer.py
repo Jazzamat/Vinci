@@ -1,12 +1,17 @@
 import os, sys
 from PIL import Image
+import glob
 
-infile_path = "/home/omer/Documents/Vinci/vinci-core/local_assets/Tracks_and_Covers/bad guy/cover.png"
+
+
+filelist = glob.glob("/home/omer/Documents/Vinci/vinci-core/local_assets/Tracks_and_Covers/*/cover.png")
 
 size = 64,64
 
-outfile_path = os.path.splitext(infile_path)[0] + f" {size}.png"
+for fname in filelist:
 
-im = Image.open(infile_path)
-im.thumbnail(size, Image.ANTIALIAS)
-im.save(outfile_path, "JPEG")
+    outfile_path = os.path.splitext(fname)[0] + f" {size}.png"
+
+    im = Image.open(fname)
+    im.thumbnail(size, Image.ANTIALIAS)
+    im.save(outfile_path, "JPEG")
