@@ -2,7 +2,7 @@
 
 [![Python 3.10.6](https://img.shields.io/badge/python-3.10.6-blue)](https://www.python.org/downloads/release/python-3106/)
 [![Node.js 8.5.1](https://img.shields.io/badge/Node.js-8.5.1-green)](https://nodejs.org/docs/latest-v8.x/api/documentation.html)
-[![](https://dcbadge.vercel.app/api/server/INVITEID)](https://discord.gg/3GUjmazQNu)
+[![](https://dcbadge.vercel.app/api/server/3GUjmazQNu)](https://discord.gg/3GUjmazQNu)
 # Vinci: The AI-Powered Album Cover Artist
 
 Vinci is an ambitious project drawing inspiration from OpenAI's DALL-E. Unlike DALL-E which converts text to images, Vinci aims to transform songs into visual representations. It utilizes a deep learning network to uncover and understand the underlying connections between songs and their corresponding album art. With a comprehensive dataset of songs and related art sourced from online platforms such as Spotify and Apple Music, Vinci aspires to generate compelling album covers based on musical inputs.
