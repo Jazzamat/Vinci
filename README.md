@@ -1,3 +1,6 @@
+![Alt text][(image link)](https://github.com/Jazzamat/Vinci/blob/AIG-Net-I/PRESAVEANDAsset%202.png.png)
+
+
 # Vinci: The AI-Powered Album Cover Artist
 
 Vinci is an ambitious project drawing inspiration from OpenAI's DALL-E. Unlike DALL-E which converts text to images, Vinci aims to transform songs into visual representations. It utilizes a deep learning network to uncover and understand the underlying connections between songs and their corresponding album art. With a comprehensive dataset of songs and related art sourced from online platforms such as Spotify and Apple Music, Vinci aspires to generate compelling album covers based on musical inputs.
