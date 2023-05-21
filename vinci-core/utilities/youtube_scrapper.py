@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from youtube_converter import YoutubeConverter, YtDlp
 from time import sleep
-os.chdir('vinci-core/local_assets/Tracks_and_Covers')
+os.chdir('../../local_assets/Tracks_and_Covers')
 
 # url = input("Enter a youtube music url:")
 url = "https://music.youtube.com/watch?v=Q0TEUMPIhk8&list=RDAMVMQ0TEUMPIhk8"
