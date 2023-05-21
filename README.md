@@ -1,4 +1,4 @@
-![Alt text](https://github.com/Jazzamat/Vinci/blob/AIG-Net-I/PRESAVEANDAsset%202.png.png)
+![Alt text](https://github.com/Jazzamat/Vinci/blob/main/misc/VinciLogo.png)
 
 [![Python 3.10.6](https://img.shields.io/badge/python-3.10.6-blue)](https://www.python.org/downloads/release/python-3106/)
 # Vinci: The AI-Powered Album Cover Artist
