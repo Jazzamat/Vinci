@@ -1,4 +1,4 @@
-![Alt text][(image link)](https://github.com/Jazzamat/Vinci/blob/AIG-Net-I/PRESAVEANDAsset%202.png.png)
+![Alt text](https://github.com/Jazzamat/Vinci/blob/AIG-Net-I/PRESAVEANDAsset%202.png.png)
 
 
 # Vinci: The AI-Powered Album Cover Artist
