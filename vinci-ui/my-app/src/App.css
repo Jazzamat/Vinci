@@ -1,0 +1,451 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #000000;
+  color:rgb(255, 255, 255);
+  line-height:1.6;
+  height: 100vh;
+  scroll-snap-type: y mandatory;
+
+}
+
+
+.container {
+  width: 100%;
+  height: 100%;
+
+
+}
+
+.navbar a{
+  position: fixed;
+  top: 1;
+  bottom: 11;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  height: 30px;
+  background: rgba(0,0,0,1);
+  justify-content: left;
+  
+
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 5px;
+
+
+
+  color:rgb(255, 255, 255);
+  text-transform: uppercase;
+  text-decoration: none;
+
+  
+}
+
+
+.navbar a:hover {
+  animation: colorRotate 6s ease infinite;
+}
+
+
+section {
+  display:flex;
+  flex-direction: column; 
+  align-items: center;
+
+
+
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  justify-content: center;
+  text-align: 100%;
+  height: 100vh;
+  scroll-snap-align: center;
+}
+
+section h1 {
+  margin: 0.5rem;
+
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;     /* Opera/IE 8+ */
+
+  font-size: 4rem; 
+  animation: colorRotate 6s linear 0s infinite;
+}
+
+
+section p {
+  
+  padding-right: 30rem;
+
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+
+
+  padding-left: 30rem;
+  padding-top: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+section p1 {
+  
+  /* padding-right: 30rem;
+
+  padding-left: 30rem;
+  padding-top: 1rem; */
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+
+section#about {
+  background: url('https://source.unsplash.com/bZZp1PmHI0E/1600x900') no-repeat center center/
+  cover;
+}
+
+section#create {
+  background: url('https://source.unsplash.com/K2tdx2mFDHc/1600x900') no-repeat center center/
+  cover;
+}
+
+.image-container {
+  
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+
+
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  
+
+  /* animation: albumRotate 12s  ease infinite; */
+
+}
+
+
+.image-container-2 {
+  position: relative;
+}
+
+.image-container-container  {
+  position: flex;
+  flex-direction: column; 
+  align-items: center;
+
+}
+
+
+
+.rainbow-image-container {
+
+  position: absolute;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+  background-size: 1800% 1800%;
+  -webkit-animation: rainbow 18s ease infinite;
+  -z-animation: rainbow 3s ease infinite;
+  -o-animation: rainbow 3s ease infinite;
+  animation: rainbow 3s ease infinite;
+  -index: 0;
+
+}
+
+.display-image {
+  border: #000000;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  animation: albumRotate 12s ease infinite;
+}
+
+@keyframes albumRotate {
+
+  from {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  } 
+  20% {
+    opacity: 1;
+  } 
+  30% {
+    opacity: 1;
+  } 
+  40% {
+    opacity: 0;
+  } 
+  50% {
+    opacity: 0;
+  } 
+  60% {
+    opacity: 0;
+  } 
+  70% {
+    opacity: 0;
+  } 
+  80% {
+    opacity: 0;
+  } 
+  90% {
+    opacity: 0;
+  } 
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.display-image-2 {
+  border: #000000;
+
+  position: absolute;
+  animation: albumRotate2 24s ease infinite;
+}
+
+
+
+@keyframes albumRotate2 {
+
+  from {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  } 
+  20% {
+    opacity: 0;
+  } 
+  30% {
+    opacity: 0;
+  } 
+  40% {
+    opacity: 0;
+  } 
+  50% {
+    opacity: 0;
+  } 
+  60% {
+    opacity: 1;
+  } 
+  70% {
+    opacity: 1;
+  } 
+  80% {
+    opacity: 1;
+  } 
+  90% {
+    opacity: 0;
+  } 
+  100% {
+    opacity: 1;
+  }
+}
+
+.display-image-3 {
+  border: #000000;
+
+  position: absolute;
+  animation: albumRotate3 12s ease infinite;
+}
+
+@keyframes albumRotate2 {
+
+  from {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  } 
+  20% {
+    opacity: 0;
+  } 
+  30% {
+    opacity: 0;
+  } 
+  40% {
+    opacity: 0;
+  } 
+  50% {
+    opacity: 0;
+  } 
+  60% {
+    opacity: 1;
+  } 
+  70% {
+    opacity: 1;
+  } 
+  80% {
+    opacity: 1;
+  } 
+  90% {
+    opacity: 0;
+  } 
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+
+.search {
+  width: 50%;
+  border-color: rgb(255, 255, 255);
+}
+
+
+
+.wrapper { 
+  
+  height: 100%;
+  width: 100%;
+  left:0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+
+
+  opacity: 0.5; 
+  object-fit: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+
+
+  background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+  background-size: 1800% 1800%;
+  -webkit-animation: rainbow 18s ease infinite;
+  -z-animation: rainbow 18s ease infinite;
+  -o-animation: rainbow 18s ease infinite;
+    animation: rainbow 18s ease infinite;
+}
+
+@-webkit-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-moz-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-o-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@keyframes rainbow { 
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+
+
+
+
+
+.title-text {
+    font-size: 70px;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+    animation: colorRotate 6s linear 0s infinite;
+
+}
+
+
+@keyframes colorRotate {
+  from {
+    color: #6666ff;
+  }
+  10% {
+    color: #0099ff;
+  }
+  50% {
+    color: #00ff00;
+  }
+  75% {
+    color: #ff3399;
+  }
+  100% {
+    color: #6666ff;
+  }
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.center-gradient {
+
+  height: 100%;
+  width: 100%;
+  left:0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  background: rgb(16, 15, 19);
+  background: radial-gradient(circle, rgb(0, 0, 3) 0%, rgba(255,255,255,0) 100%);
+  opacity: 0.3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+.grid {
+  margin: 1rem;
+  padding-left: 10rem;
+  align-items: 'center';
+}
