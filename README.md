@@ -1,15 +1,21 @@
-# VINCI: THE AI ALBUM COVER ARTIST
+# Vinci: The AI-Powered Album Cover Artist
 
-The vision for vinci is similar to dall-e by Open-Ai, but instead of a text to image converter its a song to image generator. The plan is to have a deep neural network learn the pattern between song and cover art, learning from extensive list of songs and their corresponding art online, from sites like spotify, apple music and so on. 
+Vinci is an ambitious project drawing inspiration from OpenAI's DALL-E. Unlike DALL-E which converts text to images, Vinci aims to transform songs into visual representations. It utilizes a deep learning network to uncover and understand the underlying connections between songs and their corresponding album art. With a comprehensive dataset of songs and related art sourced from online platforms such as Spotify and Apple Music, Vinci aspires to generate compelling album covers based on musical inputs.
 
-## Geting Started 
-Create React App https://create-react-app.dev/docs/getting-started/
+## Getting Started
 
-## Version: 0.01 alpha
+This project is built using React. To get started, follow the guide provided by [Create React App](https://create-react-app.dev/docs/getting-started/).
 
-## AIG-Net-I: Audio-Image Generation Network I
+## Current Version: 0.01 Alpha
 
-The proposed architecture attempts to learn the underlying relationship between audio and image data by training on pairs of song audio and corresponding album art. After training, the system should be able to generate album art from new song audio by passing the audio through the Audio Encoder and then the conditional model (GAN/Transformer) and Image Decoder. (See folder: vinci-core/neural_networks/tensorflow/AIG-Net-I)
+## Introducing AIG-Net-I: Audio-Image Generation Network I
 
+The core of Vinci is its unique architecture, AIG-Net-I. This model endeavors to learn the intricate relationship between audio and image data. It achieves this by training on pairs of songs and their corresponding album cover art. 
 
+Post-training, the system is capable of generating album art from new audio inputs. This is done by processing the audio through the Audio Encoder, passing it to the conditional model (GAN/Transformer), and finally through the Image Decoder. This pipeline helps Vinci in creating visually enticing and musically coherent album covers. 
 
+Please refer to the `vinci-core/neural_networks/tensorflow/AIG-Net-I` directory for a deeper understanding of the AIG-Net-I architecture.
+
+---
+
+Keep in mind that this is an early-stage project under active development. All feedback and contributions are welcome. Join us as we endeavor to bridge the gap between music and visual art with the power of AI.
