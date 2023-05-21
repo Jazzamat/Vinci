@@ -1,6 +1,6 @@
 /node_modules
 
-/vinci-core/local_assets
+/vinci-core/local_assets/Tracks_and_Covers/*
 
 
 # Byte-compiled / optimized / DLL files
