@@ -4,7 +4,7 @@ import glob
 
 
 
-filelist = glob.glob("/home/omer/Documents/Vinci/vinci-core/local_assets/Tracks_and_Covers/*/cover.png")
+filelist = glob.glob("/home/omer/Vinci/vinci-core/utilities/local_assets/Tracks_and_Covers/*/cover.png")
 
 size = 64,64
 
