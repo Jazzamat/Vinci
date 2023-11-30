@@ -27,7 +27,7 @@ AIG-Net-I is a cutting-edge deep learning model designed to capture and visually
 ### Architecture
 The architecture of AIG-Net-I is composed of two main encoders – one for audio and the other for images. The Audio Encoder processes audio inputs, like spectrograms, transforming them into a latent space where key features are distilled into a compact form. Similarly, the Image Encoder translates visual elements from album art into this shared latent space, focusing on capturing the essence of visual data.
 
-The heart of AIG-Net-I lies in its conditional model, which could be a GAN or a Transformer. This model acts as a bridge in the latent space, finding and learning the complex relationships between audio and visual features. It's here that the audio's latent representation is molded into a form that can be translated back into the visual domain.
+The heart of AIG-Net-I lies in its conditional model. This model acts as a bridge in the latent space, finding and learning the complex relationships between audio and visual features. It's here that the audio's latent representation is molded into a form that can be translated back into the visual domain.
 
 The final step in the network is the Image Decoder. This component takes the audio-influenced latent representation and reconstructs it back into an image – effectively generating album art from the audio data. The transition from audio to image is a journey from one sensory world to another, guided by the learned correlations in the model.
 
