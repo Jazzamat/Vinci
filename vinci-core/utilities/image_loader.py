@@ -14,7 +14,4 @@ class ImageLoader:
         images_array = images_array.astype("float32")/255
 
 
-
-
-
         return images_array
