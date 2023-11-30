@@ -11,6 +11,7 @@ import numpy as np
 
 class AudioPreprocessor():
     
+    
     @staticmethod
     def wavToSpectrogram(file_path, n_fft=2048, hop_length=512, plot=False):
 
