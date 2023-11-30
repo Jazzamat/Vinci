@@ -12,7 +12,7 @@ if not os.path.exists('./local_assets/Tracks_and_Covers'):
 os.chdir('./local_assets/Tracks_and_Covers')
 
 # url = input("Enter a youtube music url:")
-url = "https://music.youtube.com/watch?v=Q0TEUMPIhk8&list=RDAMVMQ0TEUMPIhk8"
+url = "https://music.youtube.com/watch?v=0a7q14lZwr8&list=RDAMVM0a7q14lZwr8"
 browser = webdriver.Chrome()
 browser.get(url)
 
@@ -45,6 +45,9 @@ while True:
     except FileNotFoundError as e:
         print("Title cant be a dir name. Skipping")
         next.click()
+        next.click()
+        next.click()
+        
         continue
 
     img = browser.find_element(By.XPATH,'//*[@id="img"]')
