@@ -21,16 +21,6 @@ The potential applications of AIG-Net-I extend into various realms of digital me
 ## Challenges and Insights
 Key to the success of AIG-Net-I are the methods of data representation and preprocessing, which lay the foundation for the model's performance. The training process is resource-intensive, demanding careful calibration to achieve the desired results. A significant aspect of working with AIG-Net-I is interpreting its latent space – understanding how the model perceives and connects audio with images.
 
----
-
-## How to Use
-(Provide detailed instructions on setting up, training, and using the model, along with any necessary requirements or dependencies.)
-
-## Contributing
-(Outline guidelines for those who wish to contribute to the project.)
-
-## License
-(State the licensing terms for the project.)
 
 
 
