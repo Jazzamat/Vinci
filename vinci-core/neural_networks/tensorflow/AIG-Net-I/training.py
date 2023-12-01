@@ -58,8 +58,8 @@ if __name__ == "__main__":
     print(f"Number of songs: {len(train_song_paths)}")
     print(f"Number of images: {len(train_image_paths)}")
 
-    epochs = 10000
-    batch_size = 100
-    learning_rate = 0.0001
+    epochs = 500
+    batch_size = 300
+    learning_rate = 0.00001
 
     train_vae(train_song_paths, train_image_paths, epochs, batch_size, learning_rate)

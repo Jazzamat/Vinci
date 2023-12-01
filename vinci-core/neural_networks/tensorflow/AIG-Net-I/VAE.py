@@ -57,15 +57,19 @@ class DualInputVAE:
             return Model(inputs, [mean, log_var, z], name=name)
 
         def _build_decoder(self):
-            latent_inputs = Input(shape=(self.latent_dim * 2,))
-            x = Dense(8 * 8 * 128, activation='relu')(latent_inputs)  # Increased filter size
-            x = Reshape((8, 8, 128))(x)
-            x = Conv2DTranspose(128, 3, activation='relu', strides=2, padding='same')(x)  # Upsample to 16x16
-            x = Conv2DTranspose(64, 3, activation='relu', strides=2, padding='same')(x)   # Upsample to 32x32
-            x = Conv2DTranspose(32, 3, activation='relu', strides=2, padding='same')(x)   # Upsample to 64x64
-            outputs = Conv2DTranspose(3, 3, activation='sigmoid', padding='same')(x)      # Final layer, 64x64x3
+            # Single input for the merged latent vector
+            merged_latent_inputs = Input(shape=(self.latent_dim * 2,))
 
-            return Model(latent_inputs, outputs, name='decoder')
+            # Decoder layers start here
+            x = Dense(8 * 8 * 256, activation='relu')(merged_latent_inputs)
+            x = Reshape((8, 8, 256))(x)
+            x = Conv2DTranspose(128, 3, activation='relu', strides=2, padding='same')(x)
+            x = Conv2DTranspose(64, 3, activation='relu', strides=2, padding='same')(x)
+            x = Conv2DTranspose(32, 3, activation='relu', strides=2, padding='same')(x)
+            outputs = Conv2DTranspose(3, 3, activation='sigmoid', padding='same')(x)
+
+            return Model(merged_latent_inputs, outputs, name='decoder')
+
 
 
         def _build_vae(self):
@@ -132,8 +136,8 @@ if __name__ == "__main__":
     print(f"Number of songs: {len(train_song_paths)}")
     print(f"Number of images: {len(train_image_paths)}")
 
-    epochs = 2000
-    batch_size = 32
+    epochs = 100
+    batch_size = 100
     learning_rate = 0.0001
 
     train_vae(train_song_paths, train_image_paths, epochs, batch_size, learning_rate)

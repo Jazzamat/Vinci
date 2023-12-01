@@ -12,7 +12,7 @@ if not os.path.exists('./local_assets/Tracks_and_Covers'):
 os.chdir('./local_assets/Tracks_and_Covers')
 
 # url = input("Enter a youtube music url:")
-url = "https://music.youtube.com/watch?v=0a7q14lZwr8&list=RDAMVM0a7q14lZwr8"
+url = "https://music.youtube.com/watch?v=VKm8alUEGIs&list=RDAMVMVKm8alUEGIs"
 browser = webdriver.Chrome()
 browser.get(url)
 
