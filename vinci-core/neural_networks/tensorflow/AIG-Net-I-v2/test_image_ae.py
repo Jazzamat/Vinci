@@ -41,7 +41,7 @@ def test_image_autoencoder(encoder_weights, decoder_weights, image_path, image_s
 # Specify the model weights and image path
 encoder_weights = 'weights/image_encoder_weights.h5'
 decoder_weights = 'weights/image_decoder_weights.h5'
-image_path = '/home/omer/Vinci/vinci-core/utilities/local_assets/Tracks_and_Covers/Circles/cover (64, 64).png'
+image_path = '/home/omer/Vinci/vinci-core/utilities/local_assets/Tracks_and_Covers/Cigarettes out the Window/cover.png'
 image_shape = (64, 64, 3)  # Adjust as per your model
 latent_dim = 32  # Adjust as per your model
 

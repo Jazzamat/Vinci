@@ -4,12 +4,19 @@ from tensorflow.keras.models import Model
 
 def build_encoder(input_shape, latent_dim):
     inputs = Input(shape=input_shape)
+    
+    # Add more convolutional layers
     x = Conv2D(32, 3, activation='relu', strides=2, padding='same')(inputs)
-    x = Conv2D(64, 3, activation='relu', strides=2, padding='same')(x)
+    x = Conv2D(64, 3, activation='relu', strides=2, padding='same')(x)  # Additional layer
+    x = Conv2D(128, 3, activation='relu', strides=2, padding='same')(x)
+    x = Conv2D(256, 3, activation='relu', strides=2, padding='same')(x)  # Additional layer
+
     x = Flatten()(x)
-    x = Dense(128, activation='relu')(x)
+    x = Dense(256, activation='relu')(x)  # Updated to a larger dense layer
     latent = Dense(latent_dim)(x)
+
     return Model(inputs, latent, name='encoder')
+
 
 def build_decoder(latent_dim, output_shape):
     latent_inputs = Input(shape=(latent_dim,))
@@ -19,7 +26,7 @@ def build_decoder(latent_dim, output_shape):
     x = Reshape((8, 8, 64))(x)
 
     # Upsample to the next stage
-    x = Conv2DTranspose(64, 3, activation='relu', strides=2, padding='same')(x)  # Upsample to 16x16
+    x = Conv2DTranspose(128, 3, activation='relu', strides=2, padding='same')(x)  # Upsample to 16x16
     x = Conv2DTranspose(32, 3, activation='relu', strides=2, padding='same')(x)  # Upsample to 32x32
 
     # If your original images are 64x64, you add another upsampling layer

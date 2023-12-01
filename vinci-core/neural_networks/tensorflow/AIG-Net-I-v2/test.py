@@ -31,13 +31,13 @@ def generate_album_cover(song_path, spectrogram_encoder, image_decoder, fcnn):
 
     return album_cover
 
-# Paths to model weights
+# Paths to model weightss
 spectrogram_encoder_weights = 'weights/spectrogram_encoder_weights.h5'
 image_decoder_weights = 'weights/image_decoder_weights.h5'
 fcnn_weights = 'weights/fcnn_weights.h5'
 
 # Model parameters
-spectrogram_shape = (64, 64, 1)
+spectrogram_shape = (64, 64, 3)
 image_shape = (64, 64, 3)
 latent_dim = 32
 
@@ -45,7 +45,7 @@ latent_dim = 32
 spectrogram_encoder, image_decoder, fcnn = load_models(spectrogram_encoder_weights, image_decoder_weights, fcnn_weights, spectrogram_shape, image_shape, latent_dim)
 
 # Generate an album cover for a new song
-new_song_path = '/home/omer/Vinci/vinci-core/utilities/local_assets/Tracks_and_Covers/Cigarettes out the Window/song.wav'
+new_song_path = '/home/omer/Vinci/vinci-core/utilities/local_assets/Tracks_and_Covers/Anti-Hero/song.wav'
 album_cover = generate_album_cover(new_song_path, spectrogram_encoder, image_decoder, fcnn)
 
 # Display or save the album cover

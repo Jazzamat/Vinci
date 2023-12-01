@@ -8,19 +8,18 @@ def train_autoencoder(encoder, decoder, dataset, epochs, optimizer, num_channels
     for epoch in range(epochs):
         for batch in dataset:
             with tf.GradientTape() as tape:
-                # Ensure batch is float32 and reshape it to match the expected shape
                 batch_float = tf.cast(batch, tf.float32)
-                batch_float = tf.reshape(batch_float, [-1, 64, 64, num_channels])  # Dynamic reshaping based on num_channels
-
+                
+               
                 latent = encoder(batch_float)
                 reconstructed = decoder(latent)
-
-                # Ensure both tensors are now of the same shape
                 loss = tf.reduce_mean(tf.square(batch_float - reconstructed))
 
             gradients = tape.gradient(loss, encoder.trainable_variables + decoder.trainable_variables)
             optimizer.apply_gradients(zip(gradients, encoder.trainable_variables + decoder.trainable_variables))
+
         print(f'Epoch {epoch+1}, Loss: {loss.numpy()}')
+
 
 
 
@@ -39,14 +38,14 @@ def train_fcnn(fcnn, dataset, epochs, optimizer):
 
 def main(recalculate):
     # Define the shape of your spectrogram data and the latent dimension for the autoencoders
-    spectrogram_shape = (64, 64, 1) # Example shape, adjust as necessary
+    spectrogram_shape = (64, 64, 3) # Example shape, adjust as necessary
     image_shape = (64, 64, 3) # Adjust if needed
     latent_dim = 32 # Example latent dimension, adjust as necessary
     
     # Training parameters
-    epochs = 1000
-    batch_size = 300
-    learning_rate = 0.0001
+    epochs = 100
+    batch_size = 64
+    learning_rate = 0.001
     
     train_image_paths = glob.glob("/home/omer/Vinci/vinci-core/utilities/local_assets/Tracks_and_Covers/*/cover (64, 64).png")
     train_song_paths = glob.glob("/home/omer/Vinci/vinci-core/utilities/local_assets/Tracks_and_Covers/*/*.wav")

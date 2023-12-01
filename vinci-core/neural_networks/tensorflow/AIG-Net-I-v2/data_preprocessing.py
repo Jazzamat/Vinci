@@ -22,44 +22,51 @@ from PIL import Image
 
 
 
+import librosa
+from PIL import Image
+import numpy as np
 
-def wav_to_spectrogram(file_path, recalculate=True, n_fft=2048, hop_length=512):
+def wav_to_spectrogram(file_path, recalculate=True, n_fft=2048, hop_length=512, target_shape=(64, 64, 3)):
     output_dir = os.path.dirname(file_path)
-    base_filename = os.path.basename(file_path)
     spectrogram_path = os.path.join(output_dir, 'spectrogram.png')
 
     if not recalculate and os.path.exists(spectrogram_path):
         return np.array(Image.open(spectrogram_path))
 
-    # Load audio file and convert to spectrogram
+    # Load audio file
     signal, sr = librosa.load(file_path, sr=22050)
-    stft = librosa.core.stft(signal, hop_length=hop_length, n_fft=n_fft)
-    spectrogram = np.abs(stft)
-    log_spectrogram = librosa.amplitude_to_db(spectrogram)
 
-    # Convert to image
-    spectrogram_image = Image.fromarray(log_spectrogram)
+    # Compute the Short-Time Fourier Transform (STFT)
+    stft = librosa.stft(signal, n_fft=n_fft, hop_length=hop_length)
 
-    # Normalize to [0, 255]
-    min_val = np.min(log_spectrogram)
-    max_val = np.max(log_spectrogram)
-    normalized_spectrogram = (log_spectrogram - min_val) / (max_val - min_val) * 255
-    normalized_spectrogram = normalized_spectrogram.astype(np.uint8)
-    
-    # Create image from normalized spectrogram
-    spectrogram_image = Image.fromarray(normalized_spectrogram)
-    spectrogram_image = spectrogram_image.resize((64, 64))
+    # Get the magnitude and phase of the STFT
+    magnitude, phase = librosa.magphase(stft)
 
-    # Convert to 'L' mode if necessary
-    if spectrogram_image.mode != 'L':
-        spectrogram_image = spectrogram_image.convert('L')
+    # Compute the Mel-scaled spectrogram
+    mel_spectrogram = librosa.feature.melspectrogram(S=magnitude**2, sr=sr)
 
-    # Save the spectrogram
-    spectrogram_image.save(spectrogram_path)
+    # Normalize each component
+    def normalize(x):
+        return (x - np.min(x)) / (np.max(x) - np.min(x))
+
+    magnitude = normalize(librosa.amplitude_to_db(magnitude))
+    phase = normalize(np.angle(stft))
+    mel = normalize(librosa.power_to_db(mel_spectrogram))
+
+    # Resize each component
+    magnitude_img = Image.fromarray(np.uint8(magnitude * 255)).resize(target_shape[:2])
+    phase_img = Image.fromarray(np.uint8(phase * 255)).resize(target_shape[:2])
+    mel_img = Image.fromarray(np.uint8(mel * 255)).resize(target_shape[:2])
+
+    # Merge to form an RGB image
+    spectrogram_image_rgb = Image.merge("RGB", [magnitude_img, phase_img, mel_img])
+
+    # Save the RGB spectrogram
+    spectrogram_image_rgb.save(spectrogram_path)
     print(f"Saved spectrogram to {spectrogram_path}")
 
-    # Finally, return the image as a numpy array
-    return np.array(spectrogram_image)
+    return np.array(spectrogram_image_rgb)
+
 
     # Additional methods if needed
 
@@ -74,24 +81,23 @@ def load_data(spectrogram_paths, image_paths, recalculate=False):
     spectrograms = []
     images = []
 
-    print("Processing .wav files to spectrograms... ")
+    print("Processing .wav files to spectrograms...")
     for path in spectrogram_paths:
         spectrogram_image = wav_to_spectrogram(path, recalculate)
-        log_spectrogram_resized = np.array(spectrogram_image)[..., np.newaxis]
-        spectrograms.append(log_spectrogram_resized)
+        spectrograms.append(spectrogram_image / 255.0)  # Normalize and append
 
-    print("Loading images... ")
+    print("Loading images...")
     for path in image_paths:
         image = load_and_preprocess_image(path)
-        images.append(image)
+        images.append(image)  # Images are already normalized in load_and_preprocess_image
 
-    # Convert lists to tensors and ensure correct dimensions
-    spectrograms = np.array(spectrograms)[..., np.newaxis]  # Add channel dimension
+    # Convert lists to arrays
+    spectrograms = np.array(spectrograms)
     images = np.array(images)
 
-    print("Creating TensorFlow dataset... ")
-
+    print("Creating TensorFlow dataset...")
     return tf.data.Dataset.from_tensor_slices((spectrograms, images))
+
 
 
 #Usage:
