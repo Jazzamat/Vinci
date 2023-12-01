@@ -1,54 +1,58 @@
-from VAE import DualInputVAE
-from data_preprocessing import AudioPreprocessor
+import tensorflow as tf
+from model import build_encoder, build_decoder, build_fcnn
 import numpy as np
+from data_preprocessing import wav_to_spectrogram
 import matplotlib.pyplot as plt
 
-def generate_album_cover(song_path, dual_vae):
-    # Preprocess the song to get its spectrogram
-    spectrogram = AudioPreprocessor.wav_to_spectrogram(song_path)  # Ensure this matches the training preprocessing
+def load_models(spectrogram_encoder_weights, image_decoder_weights, fcnn_weights, spectrogram_shape, image_shape, latent_dim):
+    spectrogram_encoder = build_encoder(spectrogram_shape, latent_dim)
+    spectrogram_encoder.load_weights(spectrogram_encoder_weights)
 
-    # Encode the spectrogram
-    spectrogram_mean, spectrogram_log_var, spectrogram_z = dual_vae.spectrogram_encoder.predict(spectrogram[np.newaxis, ...])
+    image_decoder = build_decoder(latent_dim, image_shape)
+    image_decoder.load_weights(image_decoder_weights)
 
-    # Decode to get the album cover directly using the audio latent vector
-    album_cover = dual_vae.decoder.predict(spectrogram_z)
+    fcnn = build_fcnn(latent_dim, latent_dim)
+    fcnn.load_weights(fcnn_weights)
+
+    return spectrogram_encoder, image_decoder, fcnn
+
+def generate_album_cover(song_path, spectrogram_encoder, image_decoder, fcnn):
+    spectrogram = wav_to_spectrogram(song_path)  # Ensure this matches the training preprocessing
+    spectrogram = spectrogram[np.newaxis, ..., np.newaxis]  # Reshape for the model
+
+    # Encode the spectrogram to latent space
+    spectrogram_latent = spectrogram_encoder.predict(spectrogram)
+
+    # Use FCNN to map spectrogram latent to image latent space
+    image_latent = fcnn.predict(spectrogram_latent)
+
+    # Decode to get the album cover
+    album_cover = image_decoder.predict(image_latent)
 
     return album_cover
 
+# Paths to model weights
+spectrogram_encoder_weights = 'weights/spectrogram_encoder_weights.h5'
+image_decoder_weights = 'weights/image_decoder_weights.h5'
+fcnn_weights = 'weights/fcnn_weights.h5'
 
-def load_model(weights_path, spectrogram_shape, image_shape, latent_dim):
-    # Initialize the VAE model with the same architecture parameters as used during training
-    dual_vae = DualInputVAE(spectrogram_shape=spectrogram_shape, 
-                            image_shape=image_shape, 
-                            latent_dim=latent_dim)
+# Model parameters
+spectrogram_shape = (64, 64, 1)
+image_shape = (64, 64, 3)
+latent_dim = 32
 
-    # Load the saved weights
-    dual_vae.vae.load_weights(weights_path)
-
-    return dual_vae
-
-# Specify the path to your saved weights and the model parameters
-weights_path = './model_weights.h5'
-spectrogram_shape = (64, 64, 1)  # Example shape, adjust as per your model
-image_shape = (64, 64, 3)        # Adjust as per your model
-latent_dim = 32                  # Adjust as per your model
-
-# Load the model
-dual_vae = load_model(weights_path, spectrogram_shape, image_shape, latent_dim)
-
-# Now you can use dual_vae for inference, testing, etc.
-
+# Load models
+spectrogram_encoder, image_decoder, fcnn = load_models(spectrogram_encoder_weights, image_decoder_weights, fcnn_weights, spectrogram_shape, image_shape, latent_dim)
 
 # Generate an album cover for a new song
-new_song_path = '/home/omer/Vinci/vinci-core/utilities/local_assets/Tracks_and_Covers/Hydrocity Zone/song.wav'
-album_cover = generate_album_cover(new_song_path, dual_vae)
+new_song_path = '/home/omer/Vinci/vinci-core/utilities/local_assets/Tracks_and_Covers/Cigarettes out the Window/song.wav'
+album_cover = generate_album_cover(new_song_path, spectrogram_encoder, image_decoder, fcnn)
 
 # Display or save the album cover
 if album_cover.ndim > 3:
-    album_cover = album_cover.reshape(album_cover.shape[1:])
+    album_cover = album_cover[0]  # Assuming batch dimension is present
 
 # Display the album cover
-plt.imshow(album_cover, cmap='gray')  # Use cmap='gray' if it's a grayscale image
-plt.axis('off')  # Turn off axis numbers and labels
+plt.imshow(album_cover, cmap='gray')  # Adjust cmap if your image is not grayscale
+plt.axis('off')
 plt.show()
-

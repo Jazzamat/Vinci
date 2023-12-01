@@ -20,47 +20,55 @@ if gpus:
 
 from PIL import Image
 
-class AudioPreprocessor:
 
-    @staticmethod
-    def wav_to_spectrogram(file_path, recalculate, n_fft=2048, hop_length=512):
-        output_dir = os.path.dirname(file_path)
-        base_filename = os.path.basename(file_path)
-        spectrogram_path = os.path.join(output_dir, 'spectrogram.png')
 
-        if not recalculate and os.path.exists(spectrogram_path):
-            return Image.open(spectrogram_path)
 
-        # Load audio file and convert to spectrogram
-        signal, sr = librosa.load(file_path, sr=22050)
-        stft = librosa.core.stft(signal, hop_length=hop_length, n_fft=n_fft)
-        spectrogram = np.abs(stft)
-        log_spectrogram = librosa.amplitude_to_db(spectrogram)
+def wav_to_spectrogram(file_path, recalculate=True, n_fft=2048, hop_length=512):
+    output_dir = os.path.dirname(file_path)
+    base_filename = os.path.basename(file_path)
+    spectrogram_path = os.path.join(output_dir, 'spectrogram.png')
 
-         # Convert to image, normalize to [0, 255], and resize
-        spectrogram_image = Image.fromarray(log_spectrogram)
-        min_val = np.min(spectrogram_image)
-        max_val = np.max(spectrogram_image)
-        spectrogram_image = (spectrogram_image - min_val) / (max_val - min_val) * 255  # Normalize to [0, 255]
-        spectrogram_image = spectrogram_image.astype(np.uint8)  # Convert to unsigned byte format
-        spectrogram_image = Image.fromarray(spectrogram_image)
-        spectrogram_image = spectrogram_image.resize((64, 64))
+    if not recalculate and os.path.exists(spectrogram_path):
+        return np.array(Image.open(spectrogram_path))
 
-        # Ensure the image is in the correct mode before saving
-        if spectrogram_image.mode != 'L':
-            spectrogram_image = spectrogram_image.convert('L')
+    # Load audio file and convert to spectrogram
+    signal, sr = librosa.load(file_path, sr=22050)
+    stft = librosa.core.stft(signal, hop_length=hop_length, n_fft=n_fft)
+    spectrogram = np.abs(stft)
+    log_spectrogram = librosa.amplitude_to_db(spectrogram)
 
-        # Save the spectrogram
-        spectrogram_image.save(spectrogram_path)
-        print(f"Saved spectrogram to {spectrogram_path}")
-        return spectrogram_image
+    # Convert to image
+    spectrogram_image = Image.fromarray(log_spectrogram)
+
+    # Normalize to [0, 255]
+    min_val = np.min(log_spectrogram)
+    max_val = np.max(log_spectrogram)
+    normalized_spectrogram = (log_spectrogram - min_val) / (max_val - min_val) * 255
+    normalized_spectrogram = normalized_spectrogram.astype(np.uint8)
+    
+    # Create image from normalized spectrogram
+    spectrogram_image = Image.fromarray(normalized_spectrogram)
+    spectrogram_image = spectrogram_image.resize((64, 64))
+
+    # Convert to 'L' mode if necessary
+    if spectrogram_image.mode != 'L':
+        spectrogram_image = spectrogram_image.convert('L')
+
+    # Save the spectrogram
+    spectrogram_image.save(spectrogram_path)
+    print(f"Saved spectrogram to {spectrogram_path}")
+
+    # Finally, return the image as a numpy array
+    return np.array(spectrogram_image)
+
     # Additional methods if needed
 
 def load_and_preprocess_image(path, target_size=(64, 64)):
-    image = Image.open(path)
+    image = Image.open(path).convert('RGB')  # Convert to RGB if needed
     image = image.resize(target_size)
-    image = np.array(image) / 255.0  # Normalize to [0, 1]
+    image = np.array(image) / 255.0
     return image
+
 
 def load_data(spectrogram_paths, image_paths, recalculate=False):
     spectrograms = []
@@ -68,7 +76,7 @@ def load_data(spectrogram_paths, image_paths, recalculate=False):
 
     print("Processing .wav files to spectrograms... ")
     for path in spectrogram_paths:
-        spectrogram_image = AudioPreprocessor.wav_to_spectrogram(path, recalculate)
+        spectrogram_image = wav_to_spectrogram(path, recalculate)
         log_spectrogram_resized = np.array(spectrogram_image)[..., np.newaxis]
         spectrograms.append(log_spectrogram_resized)
 
